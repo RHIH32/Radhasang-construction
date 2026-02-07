@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Radhasang Construction - Premier construction company specializing in residential, commercial, and renovation projects. Building dreams with quality and trust.">
+    <meta name="keywords" content="construction, builder, renovation, architecture, home building, commercial construction, Radhasang">
+    <meta name="author" content="Radhasang Construction">
+    
+    <title>Radhasang Construction - Building Dreams</title>
+    
+    <!-- EmailJS SDK (Email Bhejne ke liye Zaroori Hai) -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- Preload Hero Image -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+    
+    <link rel="icon" href="WhatsApp_Image_2025-08-17_at_12.19.17_dfa39f49-removebg-preview.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        .toast {
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%, 20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
+            pointer-events: auto;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .animate-slow-zoom {
+            animation: slowZoom 20s alternate infinite linear;
+            will-change: transform;
+        }
+        
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-slate-800 antialiased selection:bg-orange-200 selection:text-orange-900 relative">
+
+    <!-- Navigation -->
+    <nav class="glass-nav text-white sticky top-0 z-50 border-b border-slate-800/50 transition-all duration-300 shadow-2xl" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="flex items-center gap-3 group cursor-pointer">
+                <img src="WhatsApp_Image_2025-08-17_at_12.19.17_dfa39f49-removebg-preview.png" alt="Radhasang Logo" class="h-16 w-auto object-contain shadow-md transition-transform hover:scale-105">
+
+                 <i data-lucide="hammer" class="text-white w-6 h-6"></i>
+                <span class="font-bold text-2xl tracking-tight">Radhasang Construction<span class="text-orange-500">.</span></span>
+                </a>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#home" class="text-sm font-medium hover:text-orange-500 transition relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all group-hover:w-full"></span></a>
+                        <a href="#services" class="text-sm font-medium hover:text-orange-500 transition relative group">Services<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all group-hover:w-full"></span></a>
+                        <a href="#process" class="text-sm font-medium hover:text-orange-500 transition relative group">Process<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all group-hover:w-full"></span></a>
+                        <a href="#projects" class="text-sm font-medium hover:text-orange-500 transition relative group">Portfolio<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all group-hover:w-full"></span></a>
+                        <a href="#testimonials" class="text-sm font-medium hover:text-orange-500 transition relative group">Reviews<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all group-hover:w-full"></span></a>
+                        <a href="#contact" class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2.5 rounded-full text-sm font-bold transition shadow-lg hover:-translate-y-0.5 active:translate-y-0">Get a Quote</a>
+                    </div>
+                </div>
+
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" aria-label="Toggle menu" onclick="toggleMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:hidden hidden bg-slate-900 border-t border-slate-800 absolute w-full" id="mobile-menu">
+            <div class="px-4 pt-4 pb-6 space-y-2 shadow-xl">
+                <a href="#home" onclick="toggleMenu()" class="text-gray-300 hover:text-white hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition">Home</a>
+                <a href="#services" onclick="toggleMenu()" class="text-gray-300 hover:text-white hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition">Services</a>
+                <a href="#projects" onclick="toggleMenu()" class="text-gray-300 hover:text-white hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition">Projects</a>
+                <a href="#contact" onclick="toggleMenu()" class="bg-orange-600 text-center text-white block px-3 py-3 rounded-lg text-base font-bold mt-4 shadow-lg hover:bg-orange-700 transition">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div id="home" class="relative bg-slate-900 overflow-hidden min-h-screen flex items-center">
+        <div class="absolute inset-0 z-0 bg-slate-900">
+            <img 
+                class="w-full h-full object-cover animate-slow-zoom" 
+                src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" 
+                alt="Construction Site Background"
+                fetchpriority="high"
+                width="1950"
+                height="1080"
+            >
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/80 to-slate-900/40"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20">
+            <div class="max-w-3xl reveal active">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-sm font-semibold mb-6 backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                    #1 Construction Company in the City
+                </div>
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl mb-8 leading-tight drop-shadow-lg">
+                    We Build Visions <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Into Reality.</span>
+                </h1>
+                <p class="text-xl text-slate-300 mb-10 max-w-2xl leading-relaxed drop-shadow-md">
+                    Radhasang Construction combines engineering precision with architectural beauty. We don't just build structures; we create landmarks.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="px-8 py-4 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold text-lg shadow-lg hover:shadow-orange-500/30 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                        Start Your Project <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#projects" class="px-8 py-4 border border-slate-400/30 hover:border-white text-slate-200 hover:text-white rounded-lg font-medium text-lg transition backdrop-blur-sm hover:bg-white/10 text-center">
+                        View Portfolio
+                    </a>
+                </div>
+                
+                <div class="mt-12 flex items-center gap-8 border-t border-slate-700/50 pt-8 backdrop-blur-sm bg-slate-900/30 rounded-lg p-4 max-w-fit">
+                    <div>
+                        <div class="text-3xl font-bold text-white">200+</div>
+                        <div class="text-slate-400 text-sm">Projects Completed</div>
+                    </div>
+                    <div class="h-10 w-px bg-slate-700"></div>
+                    <div>
+                        <div class="text-3xl font-bold text-white">25+</div>
+                        <div class="text-slate-400 text-sm">Years Excellence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="bg-orange-600 py-10 relative z-20 -mt-10 mx-4 md:mx-auto max-w-6xl rounded-2xl shadow-2xl shadow-orange-900/30">
+        <div class="grid grid-cols-2 gap-8 px-6 text-center divide-x divide-orange-500/50">
+            <div class="reveal">
+                <i data-lucide="calendar-check" class="w-8 h-8 text-white mx-auto mb-3 opacity-90"></i>
+                <div class="text-3xl font-bold text-white">25+</div>
+                <div class="text-sm font-medium text-orange-100 uppercase tracking-wider mt-1">Years Experience</div>
+            </div>
+            <div class="reveal">
+                <i data-lucide="clock" class="w-8 h-8 text-white mx-auto mb-3 opacity-90"></i>
+                <div class="text-3xl font-bold text-white">On-Time</div>
+                <div class="text-sm font-medium text-orange-100 uppercase tracking-wider mt-1">Delivery</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-white overflow-hidden overflow-x-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
+                <div class="relative reveal">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-orange-100 rounded-full -z-10 animate-pulse"></div>
+                    <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-slate-100 rounded-full -z-10"></div>
+                    <img 
+                        class="rounded-2xl shadow-2xl w-full object-cover h-[500px] hover:scale-[1.02] transition duration-500" 
+                        src="WhatsApp Image 2026-02-07 at 12.34.40 PM.jpeg" 
+                        alt="Engineer at site"
+                        loading="lazy"
+                        width="1000"
+                        height="500"
+                    >
+                    <div class="absolute bottom-10 -left-10 bg-white p-6 rounded-lg shadow-xl hidden md:block border-l-4 border-orange-600 hover:-translate-y-1 transition">
+                        <p class="font-bold text-4xl text-slate-900">25+</p>
+                        <p class="text-slate-500 font-medium">Years of Trust</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 lg:mt-0 reveal">
+                    <h2 class="text-orange-600 font-semibold tracking-wide uppercase text-sm mb-3">Who We Are</h2>
+                    <h2 class="text-4xl font-bold text-slate-900 mb-6 leading-tight">Quality Construction.<br>Honest Service.</h2>
+                    <p class="text-lg text-slate-600 mb-6 leading-relaxed">Radhasang Construction isn't just about mixing concrete; it's about building the backdrop for your life's best moments. Since 2010, we have been setting benchmarks in the industry with our commitment to quality, safety, and innovation.</p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5"></i><span class="text-slate-700">Expert team of architects and civil engineers.</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5"></i><span class="text-slate-700">Use of Grade-A materials (Ultratech, Tata Steel, etc).</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5"></i><span class="text-slate-700">Complete transparency in billing and timelines.</span></li>
+                    </ul>
+                    <a href="#contact" class="text-orange-600 font-bold hover:text-orange-700 flex items-center gap-2 group text-lg">Learn More About Us <i data-lucide="arrow-right" class="w-5 h-5 transform group-hover:translate-x-1 transition"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-orange-600 font-semibold tracking-wide uppercase text-sm">Our Expertise</h2>
+                <h3 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">Building Solutions for Every Need</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Cards (Repeated Pattern) -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-slate-100 group reveal">
+                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-600 transition duration-300">
+                        <i data-lucide="home" class="w-7 h-7 text-orange-600 group-hover:text-white transition"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-orange-600 transition">Residential Construction</h4>
+                    <p class="text-slate-500 leading-relaxed">Turnkey solutions for your dream home. From foundation to finish, we handle everything with care.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-slate-100 group reveal">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition duration-300">
+                        <i data-lucide="building-2" class="w-7 h-7 text-blue-600 group-hover:text-white transition"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition">Commercial Hubs</h4>
+                    <p class="text-slate-500 leading-relaxed">High-performance office spaces and retail shops built for durability and business efficiency.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-slate-100 group reveal">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-600 transition duration-300">
+                        <i data-lucide="ruler" class="w-7 h-7 text-green-600 group-hover:text-white transition"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-green-600 transition">Architecture & 3D</h4>
+                    <p class="text-slate-500 leading-relaxed">Detailed floor plans, structural drawings, and 3D evaluations so you see the result before we start.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-slate-100 group reveal">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition duration-300">
+                        <i data-lucide="paint-bucket" class="w-7 h-7 text-purple-600 group-hover:text-white transition"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-purple-600 transition">Renovation</h4>
+                    <p class="text-slate-500 leading-relaxed">Modernize your old property. We specialize in structural repairs and aesthetic upgrades.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-slate-100 group reveal">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-yellow-600 transition duration-300">
+                        <i data-lucide="hard-hat" class="w-7 h-7 text-yellow-600 group-hover:text-white transition"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-yellow-600 transition">Consultation</h4>
+                    <p class="text-slate-500 leading-relaxed">Expert advice on land selection, budget estimation, and material choices.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-slate-100 group reveal">
+                    <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-red-600 transition duration-300">
+                        <i data-lucide="truck" class="w-7 h-7 text-red-600 group-hover:text-white transition"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-red-600 transition">Material Supply</h4>
+                    <p class="text-slate-500 leading-relaxed">Direct supply of high-quality cement, steel, and sand at market-best rates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Process Section -->
+    <section id="process" class="py-16 md:py-24 bg-slate-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-orange-500 font-semibold tracking-wide uppercase text-sm">How We Work</h2>
+                <h3 class="mt-2 text-3xl font-bold sm:text-4xl">Your Journey to a Dream Space</h3>
+            </div>
+            
+            <div class="relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-700 -translate-y-1/2 z-0"></div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-orange-500 transition text-center reveal hover:-translate-y-2 duration-300 shadow-lg">
+                        <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-lg shadow-orange-500/50 relative z-10">1</div>
+                        <h4 class="text-lg font-bold mb-2">Consultation</h4>
+                        <p class="text-slate-400 text-sm">We meet to understand your requirements, budget, and site conditions.</p>
+                    </div>
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-orange-500 transition text-center reveal hover:-translate-y-2 duration-300 shadow-lg" style="transition-delay: 100ms;">
+                        <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-lg shadow-orange-500/50 relative z-10">2</div>
+                        <h4 class="text-lg font-bold mb-2">Design & Plan</h4>
+                        <p class="text-slate-400 text-sm">Architects create 2D/3D plans and engineers approve the structural integrity.</p>
+                    </div>
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-orange-500 transition text-center reveal hover:-translate-y-2 duration-300 shadow-lg" style="transition-delay: 200ms;">
+                        <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-lg shadow-orange-500/50 relative z-10">3</div>
+                        <h4 class="text-lg font-bold mb-2">Construction</h4>
+                        <p class="text-slate-400 text-sm">Our skilled team builds your project with regular quality checks and updates.</p>
+                    </div>
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-orange-500 transition text-center reveal hover:-translate-y-2 duration-300 shadow-lg" style="transition-delay: 300ms;">
+                        <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-lg shadow-orange-500/50 relative z-10">4</div>
+                        <h4 class="text-lg font-bold mb-2">Handover</h4>
+                        <p class="text-slate-400 text-sm">Final inspection and key handover. Move into your ready-to-use space!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="projects" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+                <div>
+                    <h2 class="text-orange-600 font-semibold tracking-wide uppercase text-sm">Recent Works</h2>
+                    <h3 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">Featured Projects</h3>
+                </div>
+                <a href="#contact" class="hidden md:flex items-center gap-2 text-slate-600 hover:text-orange-600 font-medium transition group">View All Projects <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i></a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projects -->
+                <div class="group rounded-xl overflow-hidden shadow-lg cursor-pointer relative reveal border border-gray-100">
+                    <div class="h-72 overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="side img.jpeg" alt="Villa" loading="lazy" width="800" height="400">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full transform translate-y-2 group-hover:translate-y-0 transition">
+                        <span class="px-3 py-1 bg-orange-600 text-white text-xs font-bold rounded-full mb-2 inline-block shadow-md">Residential</span>
+                        <h3 class="text-xl font-bold text-white"></h3>
+                        <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition delay-100 mt-1">22000 sf</p>
+                    </div>
+                </div>
+                <div class="group rounded-xl overflow-hidden shadow-lg cursor-pointer relative reveal border border-gray-100">
+                    <div class="h-72 overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="WhatsApp Image 2026-02-07 at 1.52.10 PM.jpeg" alt="Office" loading="lazy" width="800" height="400">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full transform translate-y-2 group-hover:translate-y-0 transition">
+                        <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full mb-2 inline-block shadow-md">Commercial</span>
+                        <h3 class="text-xl font-bold text-white">Redson Hotel</h3>
+                        <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition delay-100 mt-1">G+5 Floors | Glass Facade</p>
+                    </div>
+                </div>
+                <div class="group rounded-xl overflow-hidden shadow-lg cursor-pointer relative reveal border border-gray-100">
+                    <div class="h-72 overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Apartment" loading="lazy" width="800" height="400">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full transform translate-y-2 group-hover:translate-y-0 transition">
+                        <span class="px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full mb-2 inline-block shadow-md">Interior</span>
+                        <h3 class="text-xl font-bold text-white">Greenwood Interiors</h3>
+                        <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition delay-100 mt-1">Modern Minimalist Design</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center md:hidden">
+                <a href="#contact" class="inline-flex items-center gap-2 text-slate-600 hover:text-orange-600 font-medium transition">View All Projects <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 md:py-24 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-orange-600 font-semibold tracking-wide uppercase text-sm">Testimonials</h2>
+                <h3 class="mt-2 text-3xl font-bold text-slate-900">What Our Clients Say</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Reviews -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 reveal hover:shadow-lg transition">
+                    <div class="flex text-orange-400 mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Radhasang Construction built our dream home exactly as we imagined. The quality of materials and the speed of work were impressive."</p>
+                    <div class="flex items-center gap-4"><div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-600">DB</div><div><div class="font-bold text-slate-900">Mr Dharmendra Baitha</div><div class="text-xs text-slate-500">Business Owner</div></div></div>
+                </div>
+                <!-- Other reviews ... -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Call To Action -->
+    <div class="bg-orange-600 py-16 relative overflow-hidden">
+         <div class="absolute inset-0 bg-orange-700 opacity-20" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #000 10px, #000 20px);"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal relative z-10">
+            <h2 class="text-3xl font-bold text-white mb-4">Ready to start your project?</h2>
+            <p class="text-orange-100 mb-8 max-w-2xl mx-auto text-lg">Let's discuss your ideas. We offer free consultation and initial estimates.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="bg-white text-orange-600 px-8 py-3.5 rounded-lg font-bold hover:bg-slate-100 transition shadow-lg transform hover:-translate-y-0.5">Get Free Quote</a>
+                <a href="tel:+917463982566" class="border-2 border-white text-white px-8 py-3.5 rounded-lg font-bold hover:bg-white/10 transition flex items-center justify-center gap-2"><i data-lucide="phone-call" class="w-5 h-5"></i> Call Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-slate-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+        <div class="absolute top-0 left-0 w-64 h-64 bg-orange-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Get In Touch</h2>
+                    <p class="text-slate-500 mb-8">Fill out the form below and our team will get back to you within 24 hours.</p>
+                    
+                    <!-- Added ID "contact-form" for EmailJS -->
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6 bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Name</label>
+                                <!-- Matches EmailJS template variable {{from_name}} -->
+                                <input type="text" name="from_name" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition outline-none" placeholder="Your Name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Phone</label>
+                                <!-- Matches EmailJS template variable {{phone}} -->
+                                <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition outline-none" placeholder="+91 98765...">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Service Type</label>
+                            <!-- Matches EmailJS template variable {{service}} -->
+                            <select name="service" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition outline-none bg-white">
+                                <option>Residential Construction</option>
+                                <option>Commercial Project</option>
+                                <option>Renovation</option>
+                                <option>Architecture & Design</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Message</label>
+                            <!-- Matches EmailJS template variable {{message}} -->
+                            <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition outline-none" placeholder="Tell us about your project..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-slate-900 text-white font-bold py-4 rounded-lg hover:bg-slate-800 transition flex items-center justify-center gap-2 shadow-lg hover:-translate-y-1 transform">
+                            Send Message <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="flex flex-col justify-center reveal">
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 mb-8 shadow-sm">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="bg-white p-3 rounded-lg shadow-sm text-orange-600"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
+                            <div><h4 class="font-bold text-slate-900">Head Office</h4><p class="text-slate-500 text-sm mt-1">Radhasang Construction Company<br>Janki Nagar Sonauli Ward No-10</p></div>
+                        </div>
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="bg-white p-3 rounded-lg shadow-sm text-orange-600"><i data-lucide="phone" class="w-6 h-6"></i></div>
+                            <div><h4 class="font-bold text-slate-900">Call Us</h4><p class="text-slate-500 text-sm mt-1">+91 7607642486</p><p class="text-slate-500 text-sm">+91 7463982566</p></div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-white p-3 rounded-lg shadow-sm text-orange-600"><i data-lucide="mail" class="w-6 h-6"></i></div>
+                            <div><h4 class="font-bold text-slate-900">Email Us</h4><p class="text-slate-500 text-sm mt-1">radhasangcompany@gmail.com</p></div>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-lg h-64 border border-slate-200">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.666710471234!2d77.20902131508246!3d28.61466878242468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2db961be393%3A0xf6c7ef5ee6964d9!2sIndia!5e0!3m2!1sen!2sin!4v1626354678234!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                    <img src="WhatsApp_Image_2025-08-17_at_12.19.17_dfa39f49-removebg-preview.png" alt="Logo" class="h-12 w-12 object-cover rounded-full border border-orange-500">
+
+                    <p class="text-sm leading-relaxed mb-6">Building sustainable and modern infrastructure since 2010. We are committed to excellence in every brick we lay.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-slate-400 hover:text-white transition transform hover:scale-110"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="https://www.instagram.com/radhasangconstruction?igsh=MTJhNnF6ejVsaXoweQ==" class="text-slate-400 hover:text-white transition transform hover:scale-110"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition transform hover:scale-110"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition transform hover:scale-110"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+                <div><h3 class="text-white font-bold mb-4">Company</h3><ul class="space-y-3 text-sm"><li><a href="#about" class="hover:text-orange-500 transition inline-block hover:translate-x-1">About Us</a></li><li><a href="#process" class="hover:text-orange-500 transition inline-block hover:translate-x-1">Our Process</a></li><li><a href="#projects" class="hover:text-orange-500 transition inline-block hover:translate-x-1">Portfolio</a></li><li><a href="#" class="hover:text-orange-500 transition inline-block hover:translate-x-1">Careers</a></li></ul></div>
+                <div><h3 class="text-white font-bold mb-4">Services</h3><ul class="space-y-3 text-sm"><li><a href="#" class="hover:text-orange-500 transition inline-block hover:translate-x-1">Residential</a></li><li><a href="#" class="hover:text-orange-500 transition inline-block hover:translate-x-1">Commercial</a></li><li><a href="#" class="hover:text-orange-500 transition inline-block hover:translate-x-1">Interior Design</a></li><li><a href="#" class="hover:text-orange-500 transition inline-block hover:translate-x-1">Renovation</a></li></ul></div>
+                <div><h3 class="text-white font-bold mb-4">Newsletter</h3><p class="text-sm mb-4">Subscribe to get latest updates.</p><form class="flex gap-2" onsubmit="event.preventDefault();"><input type="email" placeholder="Email" class="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-orange-500 transition"><button class="bg-orange-600 px-4 py-2 rounded-lg hover:bg-orange-700 text-white transition font-bold">Go</button></form></div>
+            </div>
+            <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+                <p>&copy; <span id="year">2025</span> Radhasang Construction. All rights reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0"><a href="#" class="hover:text-white transition">Privacy Policy</a><a href="#" class="hover:text-white transition">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp & Scroll Buttons -->
+    <a href="https://wa.me/+917463982566" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition-all z-40 flex items-center justify-center hover:scale-110 group border-2 border-white"><span class="absolute right-full mr-3 bg-white text-slate-800 px-3 py-1 rounded-lg text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition whitespace-nowrap pointer-events-none">Chat with us</span><i data-lucide="message-circle" class="w-7 h-7"></i></a>
+    <button id="scrollToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-24 bg-slate-800 text-white p-3 rounded-full shadow-xl hover:bg-slate-700 transition-all z-40 opacity-0 translate-y-10 pointer-events-none" aria-label="Scroll to top"><i data-lucide="arrow-up" class="w-6 h-6"></i></button>
+
+    <!-- Success Toast -->
+    <div id="toast" class="toast fixed bottom-6 left-1/2 bg-slate-800 text-white px-6 py-4 rounded-lg shadow-2xl z-50 flex items-center gap-3 border-l-4 border-green-500">
+        <i data-lucide="check-circle" class="text-green-400"></i>
+        <div><h4 class="font-bold text-sm">Request Sent!</h4><p class="text-xs text-gray-300">We will call you shortly.</p></div>
+    </div>
+    
+    <!-- Error Toast -->
+    <div id="error-toast" class="toast fixed bottom-6 left-1/2 bg-red-800 text-white px-6 py-4 rounded-lg shadow-2xl z-50 flex items-center gap-3 border-l-4 border-red-500">
+        <i data-lucide="x-circle" class="text-white"></i>
+        <div><h4 class="font-bold text-sm">Sending Failed</h4><p class="text-xs text-red-200">Please check internet or try again.</p></div>
+    </div>
+
+    <script>
+        // --- 1. INITIALIZE EMAILJS ---
+        // REPLACE 'YOUR_PUBLIC_KEY' with your actual key from https://dashboard.emailjs.com/admin/account
+        (function(){
+            // Example: emailjs.init("user_XyzABC123"); 
+            // Aapko yahan apni Public Key dalni hogi
+            // emailjs.init("YOUR_PUBLIC_KEY_HERE");
+            emailjs.init("qaATbZUQubNzYW2IY"); // <-- UNCOMMENTED THIS
+        })();
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        const scrollBtn = document.getElementById('scrollToTop');
+        let isScrolling = false;
+        window.addEventListener("scroll", () => {
+            if (!isScrolling) {
+                window.requestAnimationFrame(() => {
+                    if (window.scrollY > 500) {
+                        scrollBtn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+                    } else {
+                        scrollBtn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+                    }
+                    isScrolling = false;
+                });
+                isScrolling = true;
+            }
+        }, { passive: true });
+
+        // --- 2. HANDLE FORM SUBMIT WITH REAL EMAIL ---
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const button = form.querySelector('button');
+            const originalHTML = button.innerHTML;
+            
+            button.innerHTML = 'Sending... <i data-lucide="loader" class="animate-spin w-4 h-4 ml-2"></i>';
+            if(window.lucide) lucide.createIcons();
+            button.disabled = true;
+
+            // --- IMPORTANT: UNCOMMENT AND FILL DETAILS BELOW TO ENABLE EMAILS ---
+            
+            // 1. "YOUR_SERVICE_ID" ki jagah apni Service ID dalein (jaise: service_abc123)
+            // 2. "YOUR_TEMPLATE_ID" ki jagah apni Template ID dalein (jaise: template_xyz456)
+            
+            emailjs.sendForm('service_oujgemc', 'template_wxl6g9p', form)
+                .then(function() {
+                    // Success
+                    showToast('toast');
+                    form.reset();
+                }, function(error) {
+                    // Error
+                    console.error('FAILED...', error);
+                    showToast('error-toast');
+                })
+                .finally(() => {
+                    button.innerHTML = originalHTML;
+                    if(window.lucide) lucide.createIcons();
+                    button.disabled = false;
+                });
+        }
+
+        function showToast(id) {
+            const toast = document.getElementById(id);
+            toast.classList.remove('translate-y-full');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+                toast.classList.add('translate-y-full');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
